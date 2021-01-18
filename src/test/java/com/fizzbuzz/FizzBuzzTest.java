@@ -1,6 +1,7 @@
 package com.fizzbuzz;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -29,17 +30,22 @@ public class FizzBuzzTest
      * @param max end of range of contiguous numbers
      * @return string containing std out from FizzBuzz execution
      */
-    public String getRunFizzBuzzResponseFromStdOut(int min, int max)
+    public String [] getRunFizzBuzzResponseFromStdOut(int min, int max)
     {
         ByteArrayOutputStream stdOutBuffer = new ByteArrayOutputStream();
         PrintStream stdOut = System.out;
         FizzBuzz fb = new FizzBuzz();
 
         System.setOut(new PrintStream(stdOutBuffer));   // Point to buffer
-        fb.runFizzBuzz2(min, max);
-        String data = stdOutBuffer.toString().replaceAll("\r", "").strip();
+        fb.runFizzBuzz(min, max);
+        String data = stdOutBuffer.toString().replaceAll("\r", "");
+        String [] dataArr = data.split("\n");
+        for(int i = 0; i < dataArr.length; i++)
+        {
+          dataArr[i] = dataArr[i].strip();
+        }
         System.setOut(stdOut);                          // Point to std out
-        return (data);
+        return (dataArr);
     }
 
     /**
@@ -80,7 +86,7 @@ public class FizzBuzzTest
 
     /**
      * Helper function to get actual string counts
-     * @param outputArr array containing output strings from FizzBuzz execution
+     * @param outputArr array containing output strings from FizzBuzz output
      * @return object containing each string count
      */
     public Counts getActualStringCounts(String [] outputArr)
@@ -118,9 +124,9 @@ public class FizzBuzzTest
         System.out.println("TEST #0: Verify Output From 0 to 0");
         int minNum = 0;
         int maxNum = 0;
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String expected = "fizzbuzz";
-        assertEquals(response, expected);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] expected = {"fizzbuzz", "fizz: 0", "buzz: 0", "fizzbuzz: 1", "lucky: 0", "integer: 0"};
+        assertArrayEquals(response, expected);
     }
 
     @Test
@@ -129,9 +135,9 @@ public class FizzBuzzTest
         System.out.println("TEST #1: Verify Output From 53 to 53");
         int minNum = 53;
         int maxNum = 53;
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String expected = "lucky";
-        assertEquals(response, expected);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] expected = {"lucky", "fizz: 0", "buzz: 0", "fizzbuzz: 0", "lucky: 1", "integer: 0"};
+        assertArrayEquals(response, expected);
     }
 
     @Test
@@ -140,9 +146,9 @@ public class FizzBuzzTest
         System.out.println("TEST #2: Verify Output From 33 to 33");
         int minNum = 33;
         int maxNum = 33;
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String expected = "lucky";
-        assertEquals(response, expected);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] expected = {"lucky", "fizz: 0", "buzz: 0", "fizzbuzz: 0", "lucky: 1", "integer: 0"};
+        assertArrayEquals(response, expected);
     }
 
     @Test
@@ -151,9 +157,10 @@ public class FizzBuzzTest
         System.out.println("TEST #3: Verify Output From 0 to 20");
         int minNum = 0;
         int maxNum = 20;
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String expected = "fizzbuzz 1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz";
-        assertEquals(response, expected);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] expected = {"fizzbuzz 1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz",
+                              "fizz: 4", "buzz: 3", "fizzbuzz: 2", "lucky: 2", "integer: 10"};
+        assertArrayEquals(response, expected);
     }
 
     @Test
@@ -162,12 +169,13 @@ public class FizzBuzzTest
         System.out.println("TEST #4: Verify Output From 29 to 49");
         int minNum = 29;
         int maxNum = 49;
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String expected = "29 lucky lucky lucky lucky lucky lucky lucky lucky lucky lucky buzz 41 fizz lucky 44 fizzbuzz 46 47 fizz 49";
-        assertEquals(response, expected);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] expected = {"29 lucky lucky lucky lucky lucky lucky lucky lucky lucky lucky buzz 41 fizz lucky 44 fizzbuzz 46 47 fizz 49",
+                              "fizz: 2", "buzz: 1", "fizzbuzz: 1", "lucky: 11", "integer: 6"};
+        assertArrayEquals(response, expected);
     }
 
-    @Test
+    /*@Test
     public void test5_AllStringCountsInOutputFrom0To30()
     {
         System.out.println("TEST #5: Verify All String Counts in Output From 0 to 30");
@@ -228,6 +236,6 @@ public class FizzBuzzTest
         assertEquals(startOfStringReceived, startOfStringExpected);
         System.out.println("  [DEBUG end of string] Received: " + endOfStringReceived);
         assertEquals(endOfStringReceived, endOfStringExpected);
-    }
+    }*/
 
 }
