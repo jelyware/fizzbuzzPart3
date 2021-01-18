@@ -173,7 +173,7 @@ public class FizzBuzzTest
     @Test
     public void test7_StartAndEndOutputFrom0To999990()
     {
-        System.out.println("TEST #7: Get Expected Start and End Output From 0 to 999990");
+        System.out.println("TEST #7: Verify Start and End Output From 0 to 999990");
         int minNum = 0;
         int maxNum = 999990; // A large multiple of both 3 and 5 and therefore 15
         String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
