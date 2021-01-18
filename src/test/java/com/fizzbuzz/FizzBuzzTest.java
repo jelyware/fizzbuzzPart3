@@ -51,7 +51,6 @@ public class FizzBuzzTest
     public Counts getExpectedStringCounts(int min, int max)
     {
         Counts counts = new Counts();
-
         for(int n = min; n < max+1; n++)
         {
             String numStr = Integer.toString(n);
@@ -87,7 +86,6 @@ public class FizzBuzzTest
     public Counts getActualStringCounts(String [] outputArr)
     {
         Counts counts = new Counts();
-
         for(String i : outputArr)
         {
             if (i.equals("lucky"))
@@ -179,11 +177,11 @@ public class FizzBuzzTest
         String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
         String [] respArr = response.split(" ");
         Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + "==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + "==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + "==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + "==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + "==> Received: " + actualCounts.numberCount);
+        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + actualCounts.luckyCount);
+        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + actualCounts.fizzbuzzCount);
+        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + actualCounts.fizzCount);
+        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + actualCounts.buzzCount);
+        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + " ==> Received: " + actualCounts.numberCount);
         assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
         assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
         assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
@@ -201,11 +199,11 @@ public class FizzBuzzTest
         String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
         String [] respArr = response.split(" ");
         Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + "==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + "==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + "==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + "==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + "==> Received: " + actualCounts.numberCount);
+        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + actualCounts.luckyCount);
+        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + actualCounts.fizzbuzzCount);
+        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + actualCounts.fizzCount);
+        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + actualCounts.buzzCount);
+        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + " ==> Received: " + actualCounts.numberCount);
         assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
         assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
         assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
