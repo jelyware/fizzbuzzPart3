@@ -2,6 +2,7 @@ package com.fizzbuzz;
 
 /**
  * FizzBuzz (Step 3) API
+ * @author Jessica lynch
  * Purpose: Use to execute Step 3 FizzBuzz to produce report to std out containing
  *          entire data string and each string type count within it.
  * Example output:
@@ -11,7 +12,7 @@ package com.fizzbuzz;
  *             fizzbuzz: 1
  *             lucky: 1
  *             integer: 3
- * Author: Jessica lynch
+ *
  */
 public class FizzBuzz
 {

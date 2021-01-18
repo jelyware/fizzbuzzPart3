@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -84,40 +83,6 @@ public class FizzBuzzTest
         return counts;
     }
 
-    /**
-     * Helper function to get actual string counts
-     * @param outputArr array containing output strings from FizzBuzz output
-     * @return object containing each string count
-     */
-    public Counts getActualStringCounts(String [] outputArr)
-    {
-        Counts counts = new Counts();
-        for(String i : outputArr)
-        {
-            if (i.equals("lucky"))
-            {
-                counts.luckyCount++;
-            }
-            else if (i.equals("fizzbuzz"))
-            {
-                counts.fizzbuzzCount++;
-            }
-            else if (i.equals("fizz"))
-            {
-                counts.fizzCount++;
-            }
-            else if (i.equals("buzz"))
-            {
-                counts.buzzCount++;
-            }
-            else
-            {
-                counts.numberCount++;
-            }
-        }
-        return counts;
-    }
-
     @Test
     public void test0_OutputFrom0To0()
     {
@@ -175,26 +140,24 @@ public class FizzBuzzTest
         assertArrayEquals(response, expected);
     }
 
-    /*@Test
+    @Test
     public void test5_AllStringCountsInOutputFrom0To30()
     {
         System.out.println("TEST #5: Verify All String Counts in Output From 0 to 30");
         int minNum = 0;
         int maxNum = 30; // A large multiple of both 3 and 5 and therefore 15
         Counts expectedCounts = getExpectedStringCounts(minNum, maxNum);
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String [] respArr = response.split(" ");
-        Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + " ==> Received: " + actualCounts.numberCount);
-        assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
-        assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
-        assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
-        assertEquals(expectedCounts.buzzCount, actualCounts.buzzCount);
-        assertEquals(expectedCounts.numberCount, actualCounts.numberCount);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + response[1]);
+        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + response[2]);
+        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + response[3]);
+        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + response[4]);
+        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + response[5]);
+        assertEquals("fizz: " + expectedCounts.fizzCount, response[1]);
+        assertEquals("buzz: " + expectedCounts.buzzCount, response[2]);
+        assertEquals("fizzbuzz: " + expectedCounts.fizzbuzzCount, response[3]);
+        assertEquals("lucky: " + expectedCounts.luckyCount, response[4]);
+        assertEquals("integer: " + expectedCounts.numberCount, response[5]);
     }
 
     @Test
@@ -204,19 +167,17 @@ public class FizzBuzzTest
         int minNum = 0;
         int maxNum = 999990; // A large multiple of both 3 and 5 and therefore 15
         Counts expectedCounts = getExpectedStringCounts(minNum, maxNum);
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String [] respArr = response.split(" ");
-        Counts actualCounts = getActualStringCounts(respArr);
-        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + actualCounts.luckyCount);
-        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + actualCounts.fizzbuzzCount);
-        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + actualCounts.fizzCount);
-        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + actualCounts.buzzCount);
-        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.numberCount + " ==> Received: " + actualCounts.numberCount);
-        assertEquals(expectedCounts.luckyCount, actualCounts.luckyCount);
-        assertEquals(expectedCounts.fizzbuzzCount, actualCounts.fizzbuzzCount);
-        assertEquals(expectedCounts.fizzCount, actualCounts.fizzCount);
-        assertEquals(expectedCounts.buzzCount, actualCounts.buzzCount);
-        assertEquals(expectedCounts.numberCount, actualCounts.numberCount);
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        System.out.println("  [DEBUG fizz count] Expected: " + expectedCounts.fizzCount + " ==> Received: " + response[1]);
+        System.out.println("  [DEBUG buzz count] Expected: " + expectedCounts.buzzCount + " ==> Received: " + response[2]);
+        System.out.println("  [DEBUG fizzbuzz count] Expected: " + expectedCounts.fizzbuzzCount + " ==> Received: " + response[3]);
+        System.out.println("  [DEBUG lucky count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + response[4]);
+        System.out.println("  [DEBUG number count] Expected: " + expectedCounts.luckyCount + " ==> Received: " + response[5]);
+        assertEquals("fizz: " + expectedCounts.fizzCount, response[1]);
+        assertEquals("buzz: " + expectedCounts.buzzCount, response[2]);
+        assertEquals("fizzbuzz: " + expectedCounts.fizzbuzzCount, response[3]);
+        assertEquals("lucky: " + expectedCounts.luckyCount, response[4]);
+        assertEquals("integer: " + expectedCounts.numberCount, response[5]);
     }
 
     @Test
@@ -225,8 +186,8 @@ public class FizzBuzzTest
         System.out.println("TEST #7: Get Expected Start and End Output From 0 to 999990");
         int minNum = 0;
         int maxNum = 999990; // A large multiple of both 3 and 5 and therefore 15
-        String response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
-        String [] respArr = response.split(" ");
+        String [] response = getRunFizzBuzzResponseFromStdOut(minNum, maxNum);
+        String [] respArr = response[0].split(" ");
         int arrLen = respArr.length;
         String startOfStringReceived = respArr[0];
         String endOfStringReceived = respArr[arrLen-1];
@@ -236,6 +197,5 @@ public class FizzBuzzTest
         assertEquals(startOfStringReceived, startOfStringExpected);
         System.out.println("  [DEBUG end of string] Received: " + endOfStringReceived);
         assertEquals(endOfStringReceived, endOfStringExpected);
-    }*/
-
+    }
 }
